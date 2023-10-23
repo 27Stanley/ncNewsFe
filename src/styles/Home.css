@@ -1,0 +1,32 @@
+.homeContainer{
+    /* text-align: center; */
+    border: 2px solid black;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.articleList{
+    list-style:decimal;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeText{
+    padding-left: 50px;
+}
+
+img{
+    height: 20vh;
+}
+
+.articleSection{
+    border: 1px solid rgb(255, 0, 0);
+    padding: 10px;
+    
+}
