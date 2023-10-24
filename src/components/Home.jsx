@@ -1,19 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+import { fetchAllArticles } from "../assets/axiosGet";
+
 import "../styles/Home.css"
 
-import "../styles/Header.css"
 
 export default function fetchArticleList() {
     const [articles, setArticles] = useState([])
     const [isLoading, setLoading] = useState(true)
-    const articleListUrl = "https://ncnews1.onrender.com/api/articles"
     
-
     useEffect(() => {
-        axios.get(articleListUrl)
+        fetchAllArticles()
         .then((response) => {
 
             const mostRecentThreeArticles = response.data.articles.sort((a, b) => a.created_at - b.created_at)
@@ -43,12 +42,14 @@ export default function fetchArticleList() {
                         return <li key = {"article" + article.article_id} className="articleSection">
                             <img src={article.article_img_url}></img>
                             <br></br>
-                            Title: {article.title}
+                            <Link to = {`/articles/${article.article_id}`}>Title: {article.title}
                             <br></br>
                             By: {article.author}
                             <br></br>
                             {article.votes} votes, published on: {article.created_at.slice(0,10)}
+                            </Link>
                         </li>
+                        
                     })}
                 </ul>
             </section>

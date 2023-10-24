@@ -1,26 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from 'react-router-dom';
+
+import { fetchSingleArticle, fetchArticleComments } from "../assets/axiosGet";
 
 import "../styles/ArticlesById.css"
 
 
 export default function articleAtId() {
     const [article, setArticle] = useState({})
+    const [comments, setComments] = useState([])
     const [isLoading, setLoading] = useState(true)
     const {articleId} = useParams()
 
-    const articleListUrl = `https://ncnews1.onrender.com/api/articles/${articleId}`
-
     useEffect(() => {
-        axios.get(articleListUrl)
-        .then((article) => {
-            article = article.data.response
-            setArticle(article)
+        Promise.all([
+            fetchSingleArticle(articleId),
+            fetchArticleComments(articleId)
+        ])
+        .then(([fetchedArticle, fetchedComments]) => {
+            setArticle(fetchedArticle)
+            setComments(fetchedComments)
             setLoading(false)
         })
-        .catch((err) =>{
+        .catch((err) => {
             console.log(err)
             setLoading(false)
         })
@@ -31,7 +34,7 @@ export default function articleAtId() {
             <h2>currently loading articles</h2>
         </section>
     ):(
-        <div className="articleBody">
+        <div className="articleContainer">
             <section>
                 <h2>Article {article.article_id}</h2>
                 <h3>{article.title}</h3>
@@ -45,6 +48,30 @@ export default function articleAtId() {
                 <button>TEMP UpvoteButton</button>
                 <button>TEMP DownVoteButton</button>
             </section>
+
+            <section className="postComments">
+                TEMP post comments here
+            </section>
+
+            <section className="commentSection">
+                <ul>
+                    {comments.map((comment) => {
+                        return <li key={comment.comment_id} className="singleComment">
+                            {comment.author}, {comment.created_at}
+                            <br></br>
+                            {comment.body}
+                            <br></br>
+                            VOTES:{comment.votes}
+                            <br></br>
+                            <button>TEMP UpvoteButton</button>
+                            <button>TEMP DownVoteButton</button>
+                            </li>
+                        }
+                    )}
+                </ul>
+            </section>
+
+
         </div>
     )
 }
