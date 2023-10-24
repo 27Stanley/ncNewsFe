@@ -1,21 +1,13 @@
-.articleList{
-    list-style:decimal;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.homeContainer{
+.articleBody{
     /* text-align: center; */
     border: 2px solid black;
     grid-column-start: 2;
     grid-column-end: span 1;
     grid-row-start: 3;
     grid-row-end: span 1;
-}
 
-.homeText{
     padding-left: 50px;
+
 }
 
 .loadingState{
@@ -31,4 +23,30 @@
 
 li{
     padding: 10px;
+
+}
+
+img{
+    width: 25vw;
+    height: auto;
+    transition: transform 0.3s
+}
+
+img:hover{
+    transform: scale(1.3);
+}
+
+.voteButtons{
+    padding-bottom: 10px;
+}
+
+button{
+    background-color: #5cb5db;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+
 }
