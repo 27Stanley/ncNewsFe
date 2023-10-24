@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import { fetchAllArticles } from "../assets/axiosGet";
+
 import "../styles/Articles.css"
-
-
 
 
 export default function fetchArticleList() {
@@ -14,7 +15,7 @@ export default function fetchArticleList() {
     
 
     useEffect(() => {
-        axios.get(articleListUrl)
+        fetchAllArticles()
         .then((response) => {
             setArticles(response.data.articles) 
             setLoading(false)
