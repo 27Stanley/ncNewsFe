@@ -7,8 +7,8 @@ import "../styles/ArticlesById.css"
 
 
 export default function articleAtId() {
-
     const [article, setArticle] = useState({})
+    const [isLoading, setLoading] = useState(true)
     const {articleId} = useParams()
 
     const articleListUrl = `https://ncnews1.onrender.com/api/articles/${articleId}`
@@ -18,13 +18,19 @@ export default function articleAtId() {
         .then((article) => {
             article = article.data.response
             setArticle(article)
+            setLoading(false)
         })
         .catch((err) =>{
             console.log(err)
+            setLoading(false)
         })
     }, [])
 
-    return (
+    return  isLoading ? (
+        <section className="loadingState">
+            <h2>currently loading articles</h2>
+        </section>
+    ):(
         <div className="articleBody">
             <section>
                 <h2>Article {article.article_id}</h2>
