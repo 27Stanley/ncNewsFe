@@ -38,7 +38,7 @@ img:hover{
 }
 
 button{
-    background-color: #5cb5db;
+    background-color: rgb(210, 113, 255);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -53,7 +53,7 @@ button{
 }
 
 button:hover{
-    background-color: rgb(191, 54, 255); 
+    background-color: #5cb5db;
     color: rgb(255, 255, 255); 
 }
 
@@ -74,6 +74,5 @@ button:hover{
     width: auto;
     height: 25vh;
     margin-top: 1vh;
-    margin-bottom: 1vh;
-    
+    margin-bottom: 1vh;  
 }

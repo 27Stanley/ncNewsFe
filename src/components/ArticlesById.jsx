@@ -41,12 +41,12 @@ export default function articleAtId() {
                 <img src = {article.article_img_url}></img>
                 <p>{article.body}</p>
                 <p>Author: {article.author}</p>
-                <p>{article.votes} votes, published on {article.created_at}</p>
+                <p>{article.votes} votes, published on {article.created_at.slice(0,10)}</p>
             </section>
 
             <section className="voteButtons">
-                <button>TEMP UpvoteButton</button>
-                <button>TEMP DownVoteButton</button>
+                <button>👍</button>
+                <button>👎</button>
             </section>
 
             <section className="postComments">
@@ -55,18 +55,21 @@ export default function articleAtId() {
 
             <section className="commentSection">
                 <ul>
-                    {comments.map((comment) => {
-                        return <li key={comment.comment_id} className="singleComment">
-                            {comment.author}, {comment.created_at}
-                            <br></br>
-                            {comment.body}
-                            <br></br>
-                            VOTES:{comment.votes}
-                            <br></br>
-                            <button>TEMP UpvoteButton</button>
-                            <button>TEMP DownVoteButton</button>
+                    {comments.length < 1 ? (
+                        <p>nothing here!</p>
+                    ) : (
+                        comments.map((comment) => {
+                            return <li key={comment.comment_id} className="singleComment">
+                                {comment.author} on {comment.created_at.slice(0,10)}
+                                <br></br>
+                                {comment.body}
+                                <br></br>
+                                VOTES:{comment.votes}
+                                <br></br>
+                                <button>👍</button>
+                                <button>👎</button>
                             </li>
-                        }
+                        })
                     )}
                 </ul>
             </section>
