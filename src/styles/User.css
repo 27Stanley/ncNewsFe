@@ -1,0 +1,10 @@
+.userContainer{
+    text-align: center;
+
+    border: 1px solid black;
+
+    grid-column-start: 3;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+    grid-row-end: span 1;
+}

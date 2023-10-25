@@ -4,8 +4,9 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 
 import Header from './components/Header'
-import Home from './components/Home'
+import User from './components/User'
 import NavBar from './components/NavBar'
+import Home from './components/Home'
 import Articles from './components/Articles'
 import ArticleById from './components/ArticlesById'
 
@@ -17,6 +18,7 @@ function App() {
     <main className='container'>
       <Header></Header>
       <NavBar></NavBar>
+      <User></User>
 
       <Routes>
         <Route path="/" element={<Home />} />
