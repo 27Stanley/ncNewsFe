@@ -28,14 +28,8 @@ export const fetchArticleComments = (article_id) => {
 }
 
 export const incramentVote = (article_id, num) => {
-    console.log(num)
     return request.patch(`/articles/${article_id}`, {inc_votes: num})
-    .then((response) => {
-        console.log("HERE", "\n" ,response)
-        //return something idk
-    })
     .catch((err) => {
         console.log(err)
-        //render <p> tag here
     })
 }
