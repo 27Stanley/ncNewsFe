@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 
-import { fetchSingleArticle, fetchArticleComments } from "../assets/axiosGet";
+import { fetchSingleArticle, fetchArticleComments, incramentVote } from "../assets/axiosGet";
 
 import "../styles/ArticlesById.css"
 
@@ -11,6 +11,11 @@ export default function articleAtId() {
     const [article, setArticle] = useState({})
     const [comments, setComments] = useState([])
     const [isLoading, setLoading] = useState(true)
+
+    //article vote states
+    const [updatedVotes, setUpdatedVotes] = useState(0)
+    const [voteCountOnRender, setVoteCount] = useState(0)
+
     const {articleId} = useParams()
 
     useEffect(() => {
@@ -21,6 +26,10 @@ export default function articleAtId() {
         .then(([fetchedArticle, fetchedComments]) => {
             setArticle(fetchedArticle)
             setComments(fetchedComments)
+
+            setUpdatedVotes(fetchedArticle.votes)
+            setVoteCount(fetchedArticle.votes)
+
             setLoading(false)
         })
         .catch((err) => {
@@ -29,7 +38,7 @@ export default function articleAtId() {
         })
     }, [])
 
-    return  isLoading ? (
+    return isLoading ? (
         <section className="loadingState">
             <h2>currently loading articles</h2>
         </section>
@@ -41,12 +50,27 @@ export default function articleAtId() {
                 <img src = {article.article_img_url}></img>
                 <p>{article.body}</p>
                 <p>Author: {article.author}</p>
-                <p>{article.votes} votes, published on {article.created_at}</p>
+                <p>{updatedVotes} votes, published on {article.created_at.slice(0,10)}</p>
             </section>
 
             <section className="voteButtons">
-                <button>TEMP UpvoteButton</button>
-                <button>TEMP DownVoteButton</button>
+                <button 
+                    disabled = {updatedVotes === voteCountOnRender + 1}
+                    
+                    onClick={() => {
+                    incramentVote(article.article_id, 1)
+                    setUpdatedVotes(updatedVotes + 1)}}>
+                        👍        
+                </button>
+
+                <button 
+                    disabled = {updatedVotes === voteCountOnRender - 1}
+
+                    onClick={() => {
+                    incramentVote(article.article_id, -1)
+                    setUpdatedVotes(updatedVotes - 1)}}>
+                        👎        
+                </button>
             </section>
 
             <section className="postComments">
@@ -55,18 +79,21 @@ export default function articleAtId() {
 
             <section className="commentSection">
                 <ul>
-                    {comments.map((comment) => {
-                        return <li key={comment.comment_id} className="singleComment">
-                            {comment.author}, {comment.created_at}
-                            <br></br>
-                            {comment.body}
-                            <br></br>
-                            VOTES:{comment.votes}
-                            <br></br>
-                            <button>TEMP UpvoteButton</button>
-                            <button>TEMP DownVoteButton</button>
+                    {comments.length < 1 ? (
+                        <p>nothing here!</p>
+                    ) : (
+                        comments.map((comment) => {
+                            return <li key={comment.comment_id} className="singleComment">
+                                {comment.author} on {comment.created_at.slice(0,10)}
+                                <br></br>
+                                {comment.body}
+                                <br></br>
+                                VOTES:{comment.votes}
+                                <br></br>
+                                <button>👍</button>
+                                <button>👎</button>
                             </li>
-                        }
+                        })
                     )}
                 </ul>
             </section>

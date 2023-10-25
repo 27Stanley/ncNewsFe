@@ -6,7 +6,6 @@ import { fetchAllArticles } from "../assets/axiosGet";
 
 import "../styles/Home.css"
 
-
 export default function fetchArticleList() {
     const [articles, setArticles] = useState([])
     const [isLoading, setLoading] = useState(true)
