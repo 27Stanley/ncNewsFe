@@ -1,14 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useContext } from "react";
+import { UsernameContext } from "./UsernameContext";
 
 import "../styles/User.css"
 
 export default function User() {
 
-    const [user, setUser] = useState("jessjelly")
+    const {username, setUsername} = useContext(UsernameContext)
 
     return (
     <div className="userContainer">
-        <p>Hello: {user}</p>
+        <p>Hello {username}</p>
     </div>
 )}

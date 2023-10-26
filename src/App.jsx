@@ -10,8 +10,6 @@ import Home from './components/Home'
 import Articles from './components/Articles'
 import ArticleById from './components/ArticlesById'
 
-
-
 function App() {
 
   return (
