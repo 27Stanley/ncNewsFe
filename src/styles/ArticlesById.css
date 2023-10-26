@@ -61,6 +61,10 @@ button:active{
     transform: scale(0.9);
 }
 
+button:disabled{
+    background-color: #888888;
+}
+
 .singleComment{
     border: 1px solid rgba(0, 0, 0, 0.185);
     border-radius: 20px;
@@ -74,9 +78,10 @@ button:active{
 }
 
 .postComments{
-    border: 1px solid rgba(255, 66, 66, 0.521);
+    border: 1px solid rgba(0, 0, 0, 0.521);
     width: auto;
-    height: 25vh;
+    height: 12vh;
     margin-top: 1vh;
     margin-bottom: 1vh;  
+    
 }

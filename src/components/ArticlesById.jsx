@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { fetchSingleArticle, fetchArticleComments, incramentVote } from "../assets/axiosGet";
 
+import AddComment from "./AddComment";
+
 import "../styles/ArticlesById.css"
 
 
@@ -65,7 +67,7 @@ export default function articleAtId() {
 
                 <button 
                     disabled = {updatedVotes === voteCountOnRender - 1}
-
+                    
                     onClick={() => {
                     incramentVote(article.article_id, -1)
                     setUpdatedVotes(updatedVotes - 1)}}>
@@ -74,7 +76,7 @@ export default function articleAtId() {
             </section>
 
             <section className="postComments">
-                TEMP post comments here
+                <AddComment article_id = {article.article_id}></AddComment>
             </section>
 
             <section className="commentSection">
@@ -97,8 +99,6 @@ export default function articleAtId() {
                     )}
                 </ul>
             </section>
-
-
         </div>
     )
 }
