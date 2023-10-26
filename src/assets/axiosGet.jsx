@@ -43,9 +43,25 @@ export const incramentVote = (article_id, num) => {
 }
 
 export const postComment = (article_id, commentData) => {
-    console.log(commentData)
-    return request.post(`/articles/${article_id}/comments`, commentData)
+    return request.get(`/articles/${article_id}/comments`)
+    .then((response) => {
+        const existingComments = response.data.comments
+        let isDuplicateComment = false
 
+        for (let i=0; i<existingComments.length; i++){
+            if (existingComments[i].body === commentData.body && existingComments[i].author === commentData.username){
+                isDuplicateComment = true
+                break
+            }
+        }
+        
+        if (isDuplicateComment === true){
+            console.log("is duplicate")
+            //do nothing
+        } else {
+            return request.post(`/articles/${article_id}/comments`, commentData)
+        }
+    })
     .catch((err) => {
         console.log(err)
     })
