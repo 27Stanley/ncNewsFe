@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { fetchAllArticles } from "../assets/axiosGet";
+import { fetchAllArticles } from "../assets/axios";
 
 import "../styles/Home.css"
 

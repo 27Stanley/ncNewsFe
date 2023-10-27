@@ -9,6 +9,8 @@ import NavBar from './components/NavBar'
 import Home from './components/Home'
 import Articles from './components/Articles'
 import ArticleById from './components/ArticlesById'
+import Topics from './components/Topics'
+
 
 function App() {
 
@@ -23,7 +25,8 @@ function App() {
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:articleId" element={<ArticleById />} />
 
-
+        <Route path="/topics" element={<Topics />} />
+        
       </Routes>
       
     </main>

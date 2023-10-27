@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 
-import { fetchSingleArticle, fetchArticleComments, incramentVote } from "../assets/axiosGet";
+import { fetchSingleArticle, fetchArticleComments, incramentVote } from "../assets/axios";
 
 import AddComment from "./AddComment";
 

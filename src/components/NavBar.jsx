@@ -10,6 +10,7 @@ export default function NavBar(){
             <nav className="navItems">
                 <Link to="/">Home</Link>
                 <Link to="/articles">Article List</Link>
+                <Link to="/topics">Topics</Link>
 
             </nav>
         </div>
