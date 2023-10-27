@@ -1,5 +1,5 @@
 import React from "react";
-import { postComment } from "../assets/axiosGet";
+import { postComment } from "../assets/axios";
 import { useState, useContext } from "react";
 import { UsernameContext } from "./UsernameContext";
 

@@ -1,0 +1,30 @@
+.topicList{
+    list-style:decimal;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.topicsContainer{
+    /* text-align: center; */
+    border: 2px solid black;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+}
+
+.loadingState{
+    font-size: xx-large;
+    text-align: center;
+
+    border: 2px solid black;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+}
+
+li{
+    padding: 10px;
+}
